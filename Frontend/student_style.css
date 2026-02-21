@@ -1,4 +1,19 @@
 /* =========================
+   GOOGLE FONT (Add in <head>)
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+========================= */
+
+:root {
+    --primary-blue: #4169E1;
+    --primary-dark: #2748B8;
+
+    --text-main: #E6EAF2;
+    --text-soft: #B8C1EC;
+
+    --btn-text: #E6ECFF;   /* Softer than pure white */
+}
+
+/* =========================
    RESET
 ========================= */
 * {
@@ -8,22 +23,23 @@
 }
 
 /* =========================
-   BODY – Deep Executive Black
+   BODY
 ========================= */
 body {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #0f0f14, #181822);
-    color: #E6EAF2; /* Soft cool white */
+    color: var(--text-main);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    perspective: 1400px;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* =========================
-   CARD – Dark Panel
+   CARD – CRISP LIFT
 ========================= */
 .card {
     width: 520px;
@@ -31,25 +47,32 @@ body {
     padding: 32px;
     border-radius: 20px;
     border: 1px solid rgba(65,105,225,0.25);
+
     box-shadow: 0 35px 80px rgba(0,0,0,0.7);
-    transition: all 0.5s ease;
+
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 45px 100px rgba(0,0,0,0.85);
+    transform: translateY(-10px);
+
+    box-shadow:
+        0 50px 110px rgba(0,0,0,0.9),
+        0 0 25px rgba(65,105,225,0.4);
 }
 
 /* =========================
-   TITLE – Royal Blue Accent
+   TITLE
 ========================= */
 h1 {
     text-align: center;
-    margin-bottom: 28px;
-    font-size: 30px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: #4169E1; /* Royal Blue */
+    margin-bottom: 25px;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--primary-blue);
 }
 
 /* =========================
@@ -64,34 +87,29 @@ h1 {
 label {
     margin-bottom: 6px;
     font-size: 14px;
-    font-weight: 500;
-    color: #B8C1EC; /* Soft blue-grey */
+    color: var(--text-soft);
 }
 
+/* =========================
+   INPUTS
+========================= */
 input, select {
     padding: 12px;
-    font-size: 15px;
     border-radius: 12px;
     border: 1px solid #2a2a38;
     background: #12121a;
-    color: #E6EAF2;
+    color: var(--text-main);
     transition: all 0.3s ease;
-    box-shadow: inset 0 3px 8px rgba(0,0,0,0.6);
-}
-
-input::placeholder {
-    color: #7A8199;
 }
 
 input:focus, select:focus {
     outline: none;
-    border-color: #4169E1;
-    box-shadow: 0 0 15px rgba(65,105,225,0.4);
-    transform: translateY(-2px);
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 18px rgba(65,105,225,0.6);
 }
 
 /* =========================
-   BUTTONS – Executive Blue
+   BUTTONS
 ========================= */
 .button-group {
     text-align: center;
@@ -103,172 +121,107 @@ button {
     margin: 6px;
     border-radius: 14px;
     border: none;
-    background: linear-gradient(135deg, #4169E1, #2748B8);
-    color: #ffffff;
-    font-size: 15px;
+
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+
+    color: var(--btn-text);
+
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease,
+                filter 0.3s ease;
+}
+
+/* Add Button */
+button:nth-child(1) {
+    background: linear-gradient(135deg, #4169E1, #2748B8);
+}
+
+/* List Button */
+button:nth-child(2) {
+    background: linear-gradient(135deg, #3559C7, #223C9E);
+}
+
+/* Update Button */
+button:nth-child(3) {
+    background: linear-gradient(135deg, #4A6FF0, #2C4EC4);
 }
 
 button:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.8);
-}
-
-button:active {
-    transform: translateY(2px);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+    filter: brightness(1.08);
 }
 
 /* =========================
-   SEARCH
-========================= */
-#searchInput {
-    margin-top: 25px;
-    padding: 12px;
-    width: 100%;
-    font-size: 15px;
-    border-radius: 12px;
-    border: 1px solid #2a2a38;
-    background: #12121a;
-    color: #E6EAF2;
-    transition: all 0.3s ease;
-}
-
-#searchInput:focus {
-    border-color: #4169E1;
-    box-shadow: 0 0 15px rgba(65,105,225,0.4);
-}
-
-/* =========================
-   TABLE
+   TABLE – CRISP LIFT
 ========================= */
 table {
     width: 100%;
     margin-top: 25px;
     border-collapse: collapse;
-    font-size: 15px;
-    border-radius: 18px;
-    overflow: hidden;
     background: #141421;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+    border-radius: 15px;
+    overflow: hidden;
+
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+table:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 35px 80px rgba(0,0,0,0.85),
+        0 0 20px rgba(65,105,225,0.3);
 }
 
 th {
     background: #1d1d2b;
-    font-size: 15px;
-    font-weight: 600;
-    color: #4169E1;
-}
-
-th, td {
-    padding: 14px;
-    text-align: center;
+    color: var(--primary-blue);
+    padding: 12px;
 }
 
 td {
-    color: #E6EAF2;
-}
-
-tbody tr {
-    transition: all 0.3s ease;
+    padding: 12px;
+    text-align: center;
 }
 
 tbody tr:hover {
     background: #1f1f2e;
-    transform: translateZ(5px);
 }
 
 /* =========================
-   ICONS
-========================= */
-.edit-icon,
-.delete-icon {
-    cursor: pointer;
-    font-size: 18px;
-    transition: transform 0.3s ease;
-}
-
-.edit-icon:hover,
-.delete-icon:hover {
-    transform: scale(1.25);
-}
-
-/* =========================
-   TOAST
+   BLUE TOAST – TOP RIGHT
 ========================= */
 .toast {
     position: fixed;
-    top: 25px;
-    right: 25px;
-    padding: 16px 26px;
-    border-radius: 16px;
-    font-size: 15px;
-    font-weight: 600;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.85);
+    top: 20px;
+    right: 20px;
+
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-dark));
+    color: var(--btn-text);
+
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+
     opacity: 0;
-    transform: translateY(-25px);
-    transition: all 0.5s ease;
-    z-index: 1000;
+    transform: translateY(-20px);
+
+    transition: opacity 0.3s ease,
+                transform 0.3s ease;
+
+    z-index: 9999;
 }
 
 .toast.show {
     opacity: 1;
     transform: translateY(0);
-}
-
-.toast.success {
-    background: #1f7a4f;
-    color: white;
-}
-
-.toast.error {
-    background: #b22222;
-    color: white;
-}
-
-.toast.warning {
-    background: #b8860b;
-    color: black;
-}
-
-/* =========================
-   CONFIRM MODAL
-========================= */
-.confirm-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.75);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-}
-
-.hidden {
-    display: none;
-}
-
-.confirm-box {
-    background: #181822;
-    padding: 35px;
-    border-radius: 22px;
-    text-align: center;
-    color: #E6EAF2;
-    border: 1px solid rgba(65,105,225,0.3);
-    box-shadow: 0 50px 100px rgba(0,0,0,0.9);
-    animation: fadeInScale 0.4s ease;
-}
-
-@keyframes fadeInScale {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
 }
