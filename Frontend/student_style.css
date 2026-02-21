@@ -5,87 +5,141 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
 /* =========================
-   BODY
+   BODY – Deep Executive Black
 ========================= */
 body {
-    background: #f4f6f9;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    background: linear-gradient(135deg, #0f0f14, #181822);
+    color: #E6EAF2; /* Soft cool white */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    perspective: 1400px;
 }
 
 /* =========================
-   CARD CONTAINER
+   CARD – Dark Panel
 ========================= */
 .card {
     width: 520px;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    background: #16161f;
+    padding: 32px;
+    border-radius: 20px;
+    border: 1px solid rgba(65,105,225,0.25);
+    box-shadow: 0 35px 80px rgba(0,0,0,0.7);
+    transition: all 0.5s ease;
 }
 
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 45px 100px rgba(0,0,0,0.85);
+}
+
+/* =========================
+   TITLE – Royal Blue Accent
+========================= */
 h1 {
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 22px;
-    color: #333;
+    margin-bottom: 28px;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #4169E1; /* Royal Blue */
 }
 
 /* =========================
    FORM
 ========================= */
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 18px;
     display: flex;
     flex-direction: column;
 }
 
 label {
-    margin-bottom: 5px;
+    margin-bottom: 6px;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
+    color: #B8C1EC; /* Soft blue-grey */
 }
 
 input, select {
-    padding: 9px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: border 0.3s ease;
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 12px;
+    border: 1px solid #2a2a38;
+    background: #12121a;
+    color: #E6EAF2;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 3px 8px rgba(0,0,0,0.6);
+}
+
+input::placeholder {
+    color: #7A8199;
 }
 
 input:focus, select:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: #4169E1;
+    box-shadow: 0 0 15px rgba(65,105,225,0.4);
+    transform: translateY(-2px);
 }
 
 /* =========================
-   BUTTONS
+   BUTTONS – Executive Blue
 ========================= */
 .button-group {
     text-align: center;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 button {
-    padding: 8px 18px;
-    margin: 5px;
+    padding: 12px 24px;
+    margin: 6px;
+    border-radius: 14px;
     border: none;
-    border-radius: 5px;
-    background: #007bff;
-    color: white;
+    background: linear-gradient(135deg, #4169E1, #2748B8);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
 }
 
 button:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
+    transform: translateY(-4px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+}
+
+button:active {
+    transform: translateY(2px);
+}
+
+/* =========================
+   SEARCH
+========================= */
+#searchInput {
+    margin-top: 25px;
+    padding: 12px;
+    width: 100%;
+    font-size: 15px;
+    border-radius: 12px;
+    border: 1px solid #2a2a38;
+    background: #12121a;
+    color: #E6EAF2;
+    transition: all 0.3s ease;
+}
+
+#searchInput:focus {
+    border-color: #4169E1;
+    box-shadow: 0 0 15px rgba(65,105,225,0.4);
 }
 
 /* =========================
@@ -93,74 +147,128 @@ button:hover {
 ========================= */
 table {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 25px;
     border-collapse: collapse;
-    font-size: 14px;
+    font-size: 15px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #141421;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.7);
 }
 
 th {
-    background: #f1f3f6;
+    background: #1d1d2b;
+    font-size: 15px;
     font-weight: 600;
+    color: #4169E1;
 }
 
 th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    padding: 14px;
     text-align: center;
 }
 
-tr:hover {
-    background-color: #f9fafc;
+td {
+    color: #E6EAF2;
+}
+
+tbody tr {
+    transition: all 0.3s ease;
+}
+
+tbody tr:hover {
+    background: #1f1f2e;
+    transform: translateZ(5px);
 }
 
 /* =========================
    ICONS
 ========================= */
-.edit-icon {
-    color: #007bff;
-    cursor: pointer;
-    margin-right: 12px;
-    font-size: 17px;
-    transition: transform 0.2s ease, color 0.2s ease;
-}
-
+.edit-icon,
 .delete-icon {
-    color: #dc3545;
     cursor: pointer;
-    font-size: 17px;
-    transition: transform 0.2s ease, color 0.2s ease;
+    font-size: 18px;
+    transition: transform 0.3s ease;
 }
 
-.edit-icon:hover {
-    transform: scale(1.2);
-    color: #0056b3;
-}
-
+.edit-icon:hover,
 .delete-icon:hover {
-    transform: scale(1.2);
-    color: #a71d2a;
+    transform: scale(1.25);
 }
 
 /* =========================
-   TOAST NOTIFICATION
+   TOAST
 ========================= */
 .toast {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #28a745;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 6px;
-    font-size: 14px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    top: 25px;
+    right: 25px;
+    padding: 16px 26px;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.85);
     opacity: 0;
-    transform: translateY(-15px);
-    transition: all 0.4s ease;
+    transform: translateY(-25px);
+    transition: all 0.5s ease;
     z-index: 1000;
 }
 
 .toast.show {
     opacity: 1;
     transform: translateY(0);
+}
+
+.toast.success {
+    background: #1f7a4f;
+    color: white;
+}
+
+.toast.error {
+    background: #b22222;
+    color: white;
+}
+
+.toast.warning {
+    background: #b8860b;
+    color: black;
+}
+
+/* =========================
+   CONFIRM MODAL
+========================= */
+.confirm-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.hidden {
+    display: none;
+}
+
+.confirm-box {
+    background: #181822;
+    padding: 35px;
+    border-radius: 22px;
+    text-align: center;
+    color: #E6EAF2;
+    border: 1px solid rgba(65,105,225,0.3);
+    box-shadow: 0 50px 100px rgba(0,0,0,0.9);
+    animation: fadeInScale 0.4s ease;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
