@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    const BASE_URL = "https://student-backend-iitq.onrender.com";
+
     const form = document.getElementById("studentForm");
     const rollInput = document.getElementById("rollno");
     const branchSelect = document.getElementById("branch");
@@ -28,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
        ADD STUDENT
     ============================== */
 
-    form.addEventListener("submit", function (e) {
+    form.addEventListener("submit", async function (e) {
         e.preventDefault();
 
         const rollno = rollInput.value.trim();
@@ -36,22 +38,24 @@ document.addEventListener("DOMContentLoaded", function () {
         const branch = branchSelect.value;
         const city = citySelect.value;
 
-        fetch("http://localhost:3000/students", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ rollno, name, branch, city })
-        })
-        .then(res => res.json())
-        .then(data => {
+        try {
+            const res = await fetch(`${BASE_URL}/students`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ rollno, name, branch, city })
+            });
+
+            const data = await res.json();
             showToast(data.message);
+
             form.reset();
             rollInput.readOnly = false;
             loadStudents();
-        })
-        .catch(err => {
+
+        } catch (err) {
             console.error(err);
             showToast("Add failed");
-        });
+        }
     });
 
     /* =============================
@@ -64,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
        UPDATE STUDENT
     ============================== */
 
-    updateBtn.addEventListener("click", function () {
+    updateBtn.addEventListener("click", async function () {
 
         const rollno = rollInput.value.trim();
         const nameInput = document.getElementById("name").value.trim();
@@ -76,23 +80,10 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Validate RollNo format
-        const match = rollno.match(/^\d{2}([A-Z]+)\d{2}$/);
-        if (!match) {
-            showToast("Invalid RollNo format");
-            return;
-        }
+        try {
 
-        const rollBranch = match[1];
-
-        if (rollBranch !== branchInput) {
-            showToast("This person not in this branch");
-            return;
-        }
-
-        fetch("http://localhost:3000/students")
-        .then(res => res.json())
-        .then(data => {
+            const res = await fetch(`${BASE_URL}/students`);
+            const data = await res.json();
 
             const existingStudent = data.find(
                 student => student.RollNo === rollno
@@ -104,46 +95,44 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             const updatedStudent = {
-                name: nameInput ? nameInput : existingStudent.Name,
-                branch: branchInput ? branchInput : existingStudent.Branch,
-                city: cityInput ? cityInput : existingStudent.City
+                name: nameInput || existingStudent.Name,
+                branch: branchInput || existingStudent.Branch,
+                city: cityInput || existingStudent.City
             };
 
-            return fetch(`http://localhost:3000/students/${rollno}`, {
+            const updateRes = await fetch(`${BASE_URL}/students/${rollno}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(updatedStudent)
             });
 
-        })
-        .then(res => res.json())
-        .then(data => {
-            showToast(data.message);
+            const updateData = await updateRes.json();
+            showToast(updateData.message);
 
-            // Refresh page after update
             setTimeout(() => {
                 location.reload();
             }, 1200);
-        })
-        .catch(err => {
+
+        } catch (err) {
             console.error(err);
             showToast("Update failed");
-        });
+        }
 
     });
 
-});   // ✅ Properly closes DOMContentLoaded
-
+});
 
 /* =============================
    GLOBAL FUNCTIONS
 ============================= */
 
-function loadStudents() {
+async function loadStudents() {
 
-    fetch("http://localhost:3000/students")
-    .then(res => res.json())
-    .then(data => {
+    const BASE_URL = "https://student-backend-iitq.onrender.com";
+
+    try {
+        const res = await fetch(`${BASE_URL}/students`);
+        const data = await res.json();
 
         const tableBody = document.getElementById("studentTableBody");
         tableBody.innerHTML = "";
@@ -170,10 +159,11 @@ function loadStudents() {
                 </tr>
             `;
         });
-    })
-    .catch(err => console.error(err));
-}
 
+    } catch (err) {
+        console.error(err);
+    }
+}
 
 function editStudent(rollno, name, branch, city) {
 
@@ -185,23 +175,24 @@ function editStudent(rollno, name, branch, city) {
     document.getElementById("rollno").readOnly = true;
 }
 
+async function deleteStudent(rollno) {
 
-function deleteStudent(rollno) {
+    const BASE_URL = "https://student-backend-iitq.onrender.com";
 
-    fetch(`http://localhost:3000/students/${rollno}`, {
-        method: "DELETE"
-    })
-    .then(res => res.json())
-    .then(data => {
+    try {
+        const res = await fetch(`${BASE_URL}/students/${rollno}`, {
+            method: "DELETE"
+        });
+
+        const data = await res.json();
         showToast(data.message);
         loadStudents();
-    })
-    .catch(err => {
+
+    } catch (err) {
         console.error(err);
         showToast("Delete failed");
-    });
+    }
 }
-
 
 /* =============================
    TOAST NOTIFICATION
