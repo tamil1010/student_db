@@ -1,29 +1,28 @@
 # 📌 Project Description
 
-Student DB Management System is a full-stack web application designed to manage student records efficiently through a clean and responsive interface. The system allows users to add, update, delete, and list student data while maintaining structured backend validation and persistent database storage.
+Student DB Management System is a full-stack web application designed to manage student records through structured validation and secure CRUD operations. The system enforces strict Roll Number formatting rules and ensures branch consistency during both insertion and update operations, maintaining strong data integrity.
 
-The application demonstrates end-to-end CRUD functionality using a RESTful API architecture, integrating a responsive frontend with a cloud-deployed backend and MySQL database. It focuses on structured project architecture, deployment configuration, and clean UI design.
-
+The application demonstrates end-to-end CRUD functionality using a RESTful API architecture with client-side validation, backend error handling, and persistent MySQL storage.
 
 # 🚀 Key Features
 
-- 📋 Add Student – Insert new student records with validation
+- 📋 Add Student – Insert new student records with strict Roll Number validation
 
-- 🔄 Update Student – Modify existing student details
+- 🔄 Update Student – Modify student details with branch–RollNo consistency enforcement
 
-- 🗑 Delete Student – Remove records safely
+- 🗑 Delete Student – Remove records securely
 
-- 📊 List Students – Display all students dynamically
+- 📊 List Students – Dynamically display student records
 
-- 🔍 Roll Number Validation – Format validation using regex
+- 🔍 Roll Number Validation – Enforces format: 2 digits + BRANCH + 2 digits
 
-- 🏷 Auto Branch Detection – Extract branch from roll number
+- 🏷 Auto Branch Detection – Automatically extracts branch from RollNo
 
-- 🔔 Toast Notifications – Professional feedback system
+- 🚫 Branch Mismatch Protection – Prevents update if branch does not match RollNo
 
-- ☁ Cloud Deployment – Backend + Database hosted online
+- 🔔 Toast Notifications – Structured feedback for all operations
 
-- 📱 Responsive UI – Works on desktop and mobile
+- 📱 Responsive UI – Works across desktop and mobile
 
 
 # 🛠 Tech Stack
@@ -35,24 +34,10 @@ HTML, CSS (Modern Dark UI), JavaScript
 Node.js, Express
 
 **Database:**
-MySQL (Railway Cloud)
-
-**Deployment:**
-Frontend → Vercel
-Backend → Render
-Database → Railway
+MySQL 
 
 **Architecture:**
 REST API (No WebSockets)
-
-
-# 🌐 Live Deployment
-
-**Frontend:**
-[student-database-frontend](https://student-db-plum.vercel.app)
-
-**Backend API:**
-[student-database-backend](https://student-database-pqry.onrender.com/students)
 
 # 📁 Project Structure
 
@@ -63,7 +48,6 @@ Student_DB/
 │   ├── server.js
 │   ├── db.js
 │   ├── package.json
-│   └── .env
 │
 ├── Frontend/
 │   ├── index.html
@@ -78,7 +62,7 @@ Student_DB/
 
 ### ✅ Prerequisites
 - Node.js (v16 or above)
-- MySQL (Local or Cloud)
+- MySQL running on port 3306
 - npm
 
 ### 1️⃣ Clone Repository
@@ -95,42 +79,7 @@ Student_DB/
 - Open:Frontend/index.html
 - (Or) use Live Server in VS Code.
 
-### 4️⃣ Deployment Setup
-## 🚀 Backend Deployment (Render)
-- Push backend to GitHub
-- Create Web Service in Render
-- Add Environment Variables:
-```
-DB_HOST=xxxx
-DB_USER=root
-DB_PASSWORD=xxxx
-DB_NAME=railway
-PORT=10000
-```
-- Deploy
-
-## 🗄 Database Setup (Railway)
-- Deploy MySQL in Railway
-- Create students table:
-```
-USE railway;
-
-CREATE TABLE students (
-  RollNo VARCHAR(20) PRIMARY KEY,
-  Name VARCHAR(100) NOT NULL,
-  Branch VARCHAR(20) NOT NULL,
-  City VARCHAR(50) NOT NULL
-);
-```
-
-## 🌐 Frontend Deployment (Vercel)
-- Update BASE_URL in student_script.js:
-- const BASE_URL = "https://student-database-pqry.onrender.com";
-- Push to GitHub
-- Deploy on Vercel
-- Set Root Directory correctly if needed
-
-### 5️⃣ 📊 Database Schema
+### 4️⃣ 📊 Database Schema
 
 | Column | Type | Description |
 | -------- | -------- | -------- |
@@ -146,4 +95,4 @@ Tamilvani S
 
 Full-Stack Web Developer
 
-Focus: Clean UI, REST API, Deployment Architecture
+Focus: Clean UI, Data Validation, REST API Architecture
