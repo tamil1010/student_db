@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    const BASE_URL = "https://student-database-pqry.onrender.com";
+    const BASE_URL = "http://localhost:3000";
 
     const form = document.getElementById("studentForm");
     const rollInput = document.getElementById("rollno");
@@ -70,54 +70,55 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateBtn.addEventListener("click", async function () {
 
-        const rollno = rollInput.value.trim();
-        const nameInput = document.getElementById("name").value.trim();
-        const branchInput = branchSelect.value;
-        const cityInput = citySelect.value;
+    const rollno = rollInput.value.trim().toUpperCase();
+    const nameInput = document.getElementById("name").value.trim();
+    const branchInput = branchSelect.value;
+    const cityInput = citySelect.value;
 
-        if (!rollno) {
-            showToast("Enter RollNo to update");
-            return;
-        }
+    if (!rollno) {
+        showToast("Enter RollNo to update");
+        return;
+    }
 
-        try {
+    // 🔥 Extract branch from RollNo
+    const match = rollno.match(/^\d{2}([A-Z]+)\d{2}$/);
 
-            const res = await fetch(`${BASE_URL}/students`);
-            const data = await res.json();
+    if (!match) {
+        showToast("Invalid RollNo format");
+        return;
+    }
 
-            const existingStudent = data.find(
-                student => student.RollNo === rollno
-            );
+    const extractedBranch = match[1];
 
-            if (!existingStudent) {
-                showToast("Student not found");
-                return;
-            }
+    // 🔥 Compare extracted branch with selected branch
+    if (extractedBranch !== branchInput) {
+        showToast("Branch does not match RollNo format");
+        return;
+    }
 
-            const updatedStudent = {
-                name: nameInput || existingStudent.Name,
-                branch: branchInput || existingStudent.Branch,
-                city: cityInput || existingStudent.City
-            };
+    try {
 
-            const updateRes = await fetch(`${BASE_URL}/students/${rollno}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(updatedStudent)
-            });
+        const updateRes = await fetch(`${BASE_URL}/students/${rollno}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name: nameInput,
+                branch: branchInput,
+                city: cityInput
+            })
+        });
 
-            const updateData = await updateRes.json();
-            showToast(updateData.message);
+        if (!updateRes.ok) throw new Error("Update failed");
 
-            setTimeout(() => {
-                location.reload();
-            }, 1200);
+        const updateData = await updateRes.json();
+        showToast(updateData.message);
 
-        } catch (err) {
-            console.error(err);
-            showToast("Update failed");
-        }
+        loadStudents();
 
+    } catch (err) {
+        console.error(err);
+        showToast("Update failed");
+    }
     });
 
 });
@@ -128,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function loadStudents() {
 
-    const BASE_URL = "https://student-database-pqry.onrender.com";
+    const BASE_URL = "http://localhost:3000";
 
     try {
         const res = await fetch(`${BASE_URL}/students`);
@@ -177,7 +178,7 @@ function editStudent(rollno, name, branch, city) {
 
 async function deleteStudent(rollno) {
 
-    const BASE_URL = "https://student-database-pqry.onrender.com";
+    const BASE_URL = "http://localhost:3000";
 
     try {
         const res = await fetch(`${BASE_URL}/students/${rollno}`, {
@@ -208,4 +209,4 @@ function showToast(message) {
     setTimeout(() => {
         toast.classList.remove("show");
     }, 2500);
-}
+} 
