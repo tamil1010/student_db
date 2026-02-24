@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    const BASE_URL = "http://localhost:3000";
+    const BASE_URL = "https://student-database-pqry.onrender.com";
 
     const form = document.getElementById("studentForm");
     const rollInput = document.getElementById("rollno");
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function loadStudents() {
 
-    const BASE_URL = "http://localhost:3000";
+    const BASE_URL = "https://student-database-pqry.onrender.com";
 
     try {
         const res = await fetch(`${BASE_URL}/students`);
@@ -177,7 +177,7 @@ function editStudent(rollno, name, branch, city) {
 
 async function deleteStudent(rollno) {
 
-    const BASE_URL = "http://localhost:3000";
+    const BASE_URL = "https://student-database-pqry.onrender.com";
 
     try {
         const res = await fetch(`${BASE_URL}/students/${rollno}`, {
