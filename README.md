@@ -4,7 +4,6 @@ Student DB Management System is a full-stack web application designed to manage 
 
 The application demonstrates end-to-end CRUD functionality using a RESTful API architecture, integrating a responsive frontend with a cloud-deployed backend and MySQL database. It focuses on structured project architecture, deployment configuration, and clean UI design.
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # 🚀 Key Features
 
@@ -26,7 +25,6 @@ The application demonstrates end-to-end CRUD functionality using a RESTful API a
 
 - 📱 Responsive UI – Works on desktop and mobile
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # 🛠 Tech Stack
 
@@ -47,7 +45,6 @@ Database → Railway
 **Architecture:**
 REST API (No WebSockets)
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # 🌐 Live Deployment
 
@@ -56,8 +53,6 @@ REST API (No WebSockets)
 
 **Backend API:**
 [student-database-backend](https://student-database-pqry.onrender.com/students)
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # 📁 Project Structure
 
@@ -78,7 +73,6 @@ Student_DB/
 └── README.md
 ```
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # ▶️ How to Run the Project (Local Setup)
 
@@ -99,10 +93,10 @@ Student_DB/
   
 ### 3️⃣ Frontend Setup
 - Open:Frontend/index.html
-Or use Live Server in VS Code.
+- (Or) use Live Server in VS Code.
 
-### ☁ Deployment Setup
-**Backend Deployment (Render)**
+### 4️⃣ Deployment Setup
+## 🚀 Backend Deployment (Render)
 - Push backend to GitHub
 - Create Web Service in Render
 - Add Environment Variables:
@@ -115,7 +109,7 @@ PORT=10000
 ```
 - Deploy
 
-### Database Setup (Railway)
+## 🗄 Database Setup (Railway)
 - Deploy MySQL in Railway
 - Create students table:
 ```
@@ -129,14 +123,14 @@ CREATE TABLE students (
 );
 ```
 
-### Frontend Deployment (Vercel)
+## 🌐 Frontend Deployment (Vercel)
 - Update BASE_URL in student_script.js:
 - const BASE_URL = "https://student-database-pqry.onrender.com";
 - Push to GitHub
 - Deploy on Vercel
 - Set Root Directory correctly if needed
 
-### 📊 Database Schema
+### 5️⃣ 📊 Database Schema
 
 | Column | Type | Description |
 | -------- | -------- | -------- |
@@ -145,7 +139,6 @@ CREATE TABLE students (
 | Branch	| VARCHAR(20) |	Department/Branch |
 | City	| VARCHAR(50)	 | Student City |
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # 👤 Author
 
