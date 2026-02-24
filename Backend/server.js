@@ -5,8 +5,26 @@ const db = require("./db");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+/* ================================
+   MIDDLEWARE
+================================ */
+
+// Allow requests from your Vercel frontend
+app.use(cors({
+  origin: "*",   // You can later restrict to your vercel domain
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: false
+}));
+
 app.use(express.json());
+
+/* ================================
+   HEALTH CHECK (Very Important)
+================================ */
+
+app.get("/", (req, res) => {
+  res.send("Backend is running successfully 🚀");
+});
 
 /* ================================
    ADD STUDENT
@@ -37,11 +55,10 @@ app.post("/students", async (req, res) => {
     res.status(201).json({ message: "Student details added successfully" });
 
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
+    console.error("Add Error:", err);
+    res.status(500).json({ message: "Server error while adding student" });
   }
 });
-
 
 /* ================================
    LIST STUDENTS
@@ -49,13 +66,12 @@ app.post("/students", async (req, res) => {
 app.get("/students", async (req, res) => {
   try {
     const [rows] = await db.query("SELECT * FROM students");
-    res.json(rows);
+    res.status(200).json(rows);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
+    console.error("List Error:", err);
+    res.status(500).json({ message: "Server error while fetching students" });
   }
 });
-
 
 /* ================================
    UPDATE STUDENT
@@ -77,14 +93,13 @@ app.put("/students/:rollno", async (req, res) => {
       return res.status(404).json({ message: "Student not found" });
     }
 
-    res.json({ message: "Student details updated successfully" });
+    res.status(200).json({ message: "Student details updated successfully" });
 
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
+    console.error("Update Error:", err);
+    res.status(500).json({ message: "Server error while updating student" });
   }
 });
-
 
 /* ================================
    DELETE STUDENT
@@ -102,14 +117,13 @@ app.delete("/students/:rollno", async (req, res) => {
       return res.status(404).json({ message: "Student not found" });
     }
 
-    res.json({ message: "Student details deleted successfully" });
+    res.status(200).json({ message: "Student deleted successfully" });
 
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
+    console.error("Delete Error:", err);
+    res.status(500).json({ message: "Server error while deleting student" });
   }
 });
-
 
 /* ================================
    START SERVER
