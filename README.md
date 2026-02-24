@@ -52,10 +52,10 @@ REST API (No WebSockets)
 # 🌐 Live Deployment
 
 **Frontend:**
-[title](https://student-db-plum.vercel.app)
+[student-database-frontend](https://student-db-plum.vercel.app)
 
 **Backend API:**
-[title](https://student-database-pqry.onrender.com/students)
+[student-database-backend](https://student-database-pqry.onrender.com/students)
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -95,10 +95,10 @@ Student_DB/
 - cd Backend
 - npm install
 - node server.js
-- Backend runs on:[title](http://localhost:3000)
+- Backend runs on:http://localhost:3000
   
 ### 3️⃣ Frontend Setup
-- Open:[title](Frontend/index.html)
+- Open:Frontend/index.html
 Or use Live Server in VS Code.
 
 ### ☁ Deployment Setup
@@ -131,7 +131,7 @@ CREATE TABLE students (
 
 ### Frontend Deployment (Vercel)
 - Update BASE_URL in student_script.js:
-- const BASE_URL = [title]("https://student-database-pqry.onrender.com";)
+- const BASE_URL = "https://student-database-pqry.onrender.com";
 - Push to GitHub
 - Deploy on Vercel
 - Set Root Directory correctly if needed
@@ -150,5 +150,7 @@ CREATE TABLE students (
 # 👤 Author
 
 Tamilvani S
+
 Full-Stack Web Developer
+
 Focus: Clean UI, REST API, Deployment Architecture
