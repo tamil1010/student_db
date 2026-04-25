@@ -1,4 +1,4 @@
-# 📌 Project Description
+# 🎓 Student DataBase Management
 
 Student DB Management System is a full-stack web application designed to manage student records through structured validation and secure CRUD operations. The system enforces strict Roll Number formatting rules and ensures branch consistency during both insertion and update operations, maintaining strong data integrity.
 
