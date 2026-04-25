@@ -57,38 +57,6 @@ Student_DB/
 └── README.md
 ```
 
-
-# ▶️ How to Run the Project (Local Setup)
-
-### ✅ Prerequisites
-- Node.js (v16 or above)
-- MySQL running on port 3306
-- npm
-
-### 1️⃣ Clone Repository
-- git clone https://github.com/your-username/student_db.git
-- cd student_db
-  
-### 2️⃣ Backend Setup
-- cd Backend
-- npm install
-- node server.js
-- Backend runs on:http://localhost:3000
-  
-### 3️⃣ Frontend Setup
-- Open:Frontend/index.html
-- (Or) use Live Server in VS Code.
-
-### 4️⃣ 📊 Database Schema
-
-| Column | Type | Description |
-| -------- | -------- | -------- |
-| RollNo | VARCHAR(20) | Primary Key |
-| Name	| VARCHAR(100)	| Student Name |
-| Branch	| VARCHAR(20) |	Department/Branch |
-| City	| VARCHAR(50)	 | Student City |
-
-
 # 👤 Author
 
 Tamilvani S
